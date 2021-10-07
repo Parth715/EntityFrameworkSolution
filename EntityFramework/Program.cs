@@ -13,45 +13,47 @@ namespace EntityFramework
             var majCtrl = new MajorsController();
             var majors = await majCtrl.GetAll();
             majors.ForEach(m => Console.WriteLine(m));
+            var major = await majCtrl.GetByPk(1);
+            Console.WriteLine(major);
         }
        
         
         
         
         static void X() { 
-            Major major = null;
-            var majorsCtrl = new MajorsController();
-                var NewMajor = new Major()
-                {
-                    Id = 0,
-                    Code = "MUSC",
-                    Description = "Music",
-                    MinSat = 1595
-                };
-                var returncode = majorsCtrl.Create(NewMajor);
-            try
-            {
-                if (!returncode)
-                {
-                    Console.WriteLine("Create Failed");
-                }
-            }catch (Exception ex)
-            {
-                Console.WriteLine($"Exception occurred: {ex.Message}");
-            }
-            NewMajor.Description = "Classical Music";
-            majorsCtrl.Change(NewMajor.Id, NewMajor);
+        //    Major major = null;
+        //    var majorsCtrl = new MajorsController();
+        //        var NewMajor = new Major()
+        //        {
+        //            Id = 0,
+        //            Code = "MUSC",
+        //            Description = "Music",
+        //            MinSat = 1595
+        //        };
+        //        var returncode = majorsCtrl.Create(NewMajor);
+        //    try
+        //    {
+        //        if (!returncode)
+        //        {
+        //            Console.WriteLine("Create Failed");
+        //        }
+        //    }catch (Exception ex)
+        //    {
+        //        Console.WriteLine($"Exception occurred: {ex.Message}");
+        //    }
+        //    NewMajor.Description = "Classical Music";
+        //    majorsCtrl.Change(NewMajor.Id, NewMajor);
 
-            var rc = majorsCtrl.Remove(NewMajor.Id);
-            if (!rc)
-            {
-                Console.WriteLine("Remove Failed");
-            }
-            major = majorsCtrl.GetByCode("GENB");
-            Console.WriteLine(major);
+        //    var rc = majorsCtrl.Remove(NewMajor.Id);
+        //    if (!rc)
+        //    {
+        //        Console.WriteLine("Remove Failed");
+        //    }
+        //    major = majorsCtrl.GetByCode("GENB");
+        //    Console.WriteLine(major);
 
-            major = majorsCtrl.GetByPk(2);
-            Console.WriteLine($"{major.Description}");
+        //    major = majorsCtrl.GetByPk(2);
+        //    Console.WriteLine($"{major.Description}");
 
             //major = majorsCtrl.GetByPk(1000);
             //if(major==null)

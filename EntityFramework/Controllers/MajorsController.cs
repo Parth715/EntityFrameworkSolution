@@ -21,13 +21,13 @@ namespace EntityFramework.Controllers
         {
             return await _context.Majors.ToListAsync();
         }
-        public Major GetByPk(int Id)
+        public async Task<Major> GetByPk(int Id)
         {
-            return _context.Majors.Find(Id);
+            return await _context.Majors.FindAsync(Id);
         }
-        public Major GetByCode(string Code)
+        public async Task<Major> GetByCode(string Code)
         {
-            return _context.Majors.SingleOrDefault(m => m.Code == Code);
+            return await _context.Majors.SingleOrDefaultAsync(m => m.Code == Code);
         }
         public bool Create(Major major)//first major is a major instance second major is the instance name/variable
         {
