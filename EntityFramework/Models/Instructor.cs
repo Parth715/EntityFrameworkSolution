@@ -7,6 +7,10 @@ namespace EntityFramework.Models
 {
     public partial class Instructor
     {
+        public override string ToString()
+        {
+            return $"{Id} | {Firstname} | {Lastname} | {YearsExperience}";
+        }
         public Instructor()
         {
             Classes = new HashSet<Class>();

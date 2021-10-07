@@ -1,4 +1,5 @@
 ﻿using EntityFramework.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,9 +17,9 @@ namespace EntityFramework.Controllers
             _context = new EdDbContext();
         }
 
-        public List<Major> GetAll()
+        public async Task<List<Major>> GetAll()
         {
-            return _context.Majors.ToList();
+            return await _context.Majors.ToListAsync();
         }
         public Major GetByPk(int Id)
         {
@@ -45,12 +46,24 @@ namespace EntityFramework.Controllers
             {
                 throw new Exception("Ids don't match");
             }
-            _context.Entry(major).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+            // major.Updated = DateTime.Now;
+            _context.Entry(major).State = Microsoft.EntityFrameworkCore.EntityState.Modified;//entity framework will go to the cache and tell it that something has changed
             var rowsAffected = _context.SaveChanges();
             if (rowsAffected != 1)
             {
                 throw new Exception("Change failed");
             }
+            return true;
+        }
+        public bool Remove(int Id)
+        {
+            var major = _context.Majors.Find(Id);
+            if(major == null)
+            {
+                return false;
+            }
+            _context.Majors.Remove(major);
+            _context.SaveChanges();
             return true;
         }
     }

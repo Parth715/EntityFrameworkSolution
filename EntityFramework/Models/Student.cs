@@ -5,8 +5,13 @@ using System.Collections.Generic;
 
 namespace EntityFramework.Models
 {
+    
     public partial class Student
     {
+        public override string ToString()
+        {
+            return $"{Firstname} | {Lastname} | {Sat} | {Gpa} | {(MajorId == null? "undecided" : Major.Description)}";
+        }                                                       //if major id is null then print undecided otherwise write the description
         public Student()
         {
             StudentClasses = new HashSet<StudentClass>();

@@ -7,6 +7,10 @@ namespace EntityFramework.Models
 {
     public partial class Class
     {
+        public override string ToString()
+        {
+            return $"{Id} | {Code} | {Subject} | {Section}";
+        }
         public Class()
         {
             Assignments = new HashSet<Assignment>();
